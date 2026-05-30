@@ -20,31 +20,11 @@ VALUES
 	(9, 'Liam', 'West', 'Laptop', 1050.00, '2026-02-01'),
 	(10, 'Omar', 'South', 'Tablet', NULL, '2026-02-03');
 
-ALTER TABLE sales
-ADD COLUMN bonus REAL;
-
-UPDATE sales
-SET bonus = amount * 0.10;
-
-ALTER TABLE sales
-ADD COLUMN is_flagged INTEGER DEFAULT 0;
-
-ALTER TABLE sales RENAME TO sales_archive;
-
-ALTER TABLE sales_archive RENAME TO sales;
-
-ALTER TABLE sales
-RENAME COLUMN rep_name TO salesperson;
-
-ALTER TABLE sales
-DROP COLUMN is_flagged;
 
 -- 1.
 ALTER TABLE sales
 ADD COLUMN tier TEXT AS (CASE WHEN amount > 1000 THEN 'high' ELSE 'low' END);
 
-ALTER TABLE sales
-DROP COLUMN tier;
 
 -- 2.
 ALTER TABLE sales
